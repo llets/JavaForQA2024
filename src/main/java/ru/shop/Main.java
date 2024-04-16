@@ -1,5 +1,6 @@
 package ru.shop;
 
+import ru.shop.exception.BadOrderCountException;
 import ru.shop.model.Customer;
 import ru.shop.model.Product;
 import ru.shop.model.ProductType;

@@ -1,4 +1,4 @@
-package ru.shop.interfaces;
+package ru.shop.repository;
 
 import java.util.List;
 

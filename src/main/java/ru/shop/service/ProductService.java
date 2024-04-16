@@ -1,6 +1,5 @@
 package ru.shop.service;
 
-import ru.shop.interfaces.Service;
 import ru.shop.model.Product;
 import ru.shop.model.ProductType;
 import ru.shop.repository.ProductRepository;

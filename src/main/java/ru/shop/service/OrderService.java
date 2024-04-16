@@ -3,8 +3,7 @@ package ru.shop.service;
 
 
 
-import ru.shop.BadOrderCountException;
-import ru.shop.interfaces.Service;
+import ru.shop.exception.BadOrderCountException;
 import ru.shop.model.Customer;
 import ru.shop.model.Order;
 import ru.shop.model.Product;
@@ -33,7 +32,7 @@ public class OrderService implements Service<Order> {
             throw new BadOrderCountException("Вы пытаетесь создать заказ с невалидным количеством товара!");
         } else {
             Order order = new Order(UUID.randomUUID().toString(), customer.id(), product.id(), count, count * product.cost());
-            orderRepository.orders.add(order);
+            orderRepository.save(order);
         }
     }
 
@@ -44,7 +43,7 @@ public class OrderService implements Service<Order> {
 
     public List<Order> findByCustomer(Customer customer) {
         List<Order> ordersResult = new ArrayList<>();
-        for (Order order : orderRepository.orders) {
+        for (Order order : orderRepository.findAll()) {
             if (order.customerId().equals(customer.id())) {
                 ordersResult.add(order);
             }
@@ -54,7 +53,7 @@ public class OrderService implements Service<Order> {
 
     public long getTotalCustomerAmount(Customer customer) {
         long res = 0;
-        for (Order order : orderRepository.orders) {
+        for (Order order : orderRepository.findAll()) {
             if (Objects.equals(order.customerId(), customer.id())) {
                 res += order.amount();
             }
